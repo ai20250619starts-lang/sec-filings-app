@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC Filings Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Optional Header if needed, though screenshot didn't show much header context 
+        <header>
+             <h1>SEC Filings</h1>
+        </header>
+        -->
+
+        <!-- Filters -->
+        <div class="controls">
+            <!-- Hidden CIK for now, default to Recursion or user input via URL/Console if needed, but keeping it visible for flexibility -->
+            <div class="input-group">
+                <label for="cik">Company CIK</label>
+                <input type="text" id="cik" value="0001601830" style="width: 120px;">
+            </div>
+
+            <div class="input-group">
+                <label for="groupSelect">Group</label>
+                <select id="groupSelect">
+                    <option value="All">All</option>
+                    <!-- Options populated by JS -->
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="yearSelect">Filing year</label>
+                <select id="yearSelect">
+                    <option value="All">All</option>
+                    <!-- Options populated by JS -->
+                </select>
+            </div>
+
+            <button id="searchBtn" class="btn-primary">Filter</button>
+        </div>
+
+        <div id="loader" class="loader">
+            Loading filings...
+        </div>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Filing Date ▴</th>
+                    <th>Form ▴</th>
+                    <th>Description ▴</th>
+                    <th>Filing Group</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Rows will be populated here -->
+            </tbody>
+        </table>
+
+        <div class="pagination-container">
+            <div class="pagination" id="paginationControls">
+                <!-- Buttons injected by JS -->
+            </div>
+            <div class="results-count" id="resultsCount">
+                Displaying 0 results
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG Definitions for reuse -->
+    <svg style="display: none;">
+        <!-- Chain Icon -->
+        <symbol id="icon-chain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </symbol>
+        <!-- PDF Icon (Generic Page) -->
+        <symbol id="icon-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+        </symbol>
+        <!-- Word Icon (W) -->
+        <symbol id="icon-word" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="8,20 10,6 14,20 16,6"></polyline>
+        </symbol>
+        <!-- X Icon -->
+        <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </symbol>
+    </svg>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
