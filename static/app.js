@@ -66,7 +66,7 @@ async function fetchFilings() {
     if (year && year !== 'All') params.append('year', year);
 
     try {
-        const response = await fetch(`http://localhost:5000/api/filings?${params.toString()}`);
+        const response = await fetch(`/api/filings?${params.toString()}`);
         const data = await response.json();
 
         if (data.error) {
@@ -205,3 +205,4 @@ function updatePaginationLogic() {
 
     container.innerHTML = html;
 }
+
